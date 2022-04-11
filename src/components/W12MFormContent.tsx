@@ -4,6 +4,7 @@ import PlanetName from "./PlanetName";
 import NumberOfBeings from "./NumberOfBeings";
 import MathQuestion from "./MathQuestion";
 import ReasonOfSparing from "./ReasonOfSparing";
+import "./W12MFormContent.css";
 
 interface Props {
   onSubmit: (formData: string) => void;
@@ -13,7 +14,7 @@ const W12MFormContent = ({ onSubmit }: Props) => {
   const [speciesName, setSpeciesName] = useState("");
   const [planetName, setPlanetName] = useState("");
   const [numOfBeings, setNumberOfBeings] = useState("");
-  const [mathQuestion, setMathQuestion] = useState("4");
+  const [mathQuestion, setMathQuestion] = useState("Not 4");
   const [reasonOfSparing, setReasonOfSparing] = useState("");
 
   const returnFormData = useCallback(
@@ -37,7 +38,9 @@ const W12MFormContent = ({ onSubmit }: Props) => {
       <NumberOfBeings onChangeTextinput={setNumberOfBeings} />
       <MathQuestion onChangeSelection={setMathQuestion} />
       <ReasonOfSparing onChangeTextarea={setReasonOfSparing} />
-      <input type="submit" value="Submit form" />
+      <div className="form__submitButtonContainer">
+        <input type="submit" value="Submit form" />
+      </div>
     </form>
   );
 };

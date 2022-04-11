@@ -1,11 +1,15 @@
+import "./W12MFormContent.css";
+
 interface Props {
   onChangeTextinput: (text: string) => void;
 }
 
 const NumberOfBeings = ({ onChangeTextinput }: Props) => {
   return (
-    <div>
-      <label htmlFor="numInput">Number of beings: </label>
+    <div className="form__div">
+      <label htmlFor="numInput" className="form__label">
+        Number of beings:{" "}
+      </label>
       <input
         id="numInput"
         title="Enter a number > 1,000,000,000"
@@ -18,6 +22,7 @@ const NumberOfBeings = ({ onChangeTextinput }: Props) => {
         }
         onChange={(e) => validateAndSetText(e.target as HTMLInputElement)}
         pattern="[1-9][0-9]{9,}"
+        className="form__input"
       />
     </div>
   );

@@ -1,11 +1,15 @@
+import "./W12MFormContent.css";
+
 interface Props {
   onChangeTextinput: (text: string) => void;
 }
 
 const SpeciesName = ({ onChangeTextinput }: Props) => {
   return (
-    <div>
-      <label htmlFor="speciesInput">Species Name: </label>
+    <div className="form__div">
+      <label htmlFor="speciesInput" className="form__label">
+        Species Name:{" "}
+      </label>
       <input
         id="speciesInput"
         title="Enter your species name with 3 and 23 characters"
@@ -18,6 +22,7 @@ const SpeciesName = ({ onChangeTextinput }: Props) => {
         }
         onChange={(e) => validateAndSetText(e.target as HTMLInputElement)}
         pattern="[A-Za-z]{3,23}"
+        className="form__input"
       />
     </div>
   );

@@ -18,4 +18,28 @@ describe("validate the function call", () => {
     );
     expect(onChangeHandler).toHaveBeenCalled();
   });
+
+  //expect not valid is true/false
+  test.each([
+    ["1", true],
+    ["123", true],
+    ["1234567890123456", true],
+    ["1234567890123456a", false],
+    ["1234567890123456a!@#$", false],
+  ])(
+    "Given the input text is (%s), Then the error message should (not) be prompted correctly",
+    (inputText, expected) => {
+      render(<ReasonOfSparing onChangeTextarea={() => {}} />);
+      const input = screen.getByRole("textbox") as HTMLInputElement;
+      userEvent.type(input, inputText);
+      expect(!input.validity.valid).toBe(expected);
+    }
+  );
+
+  test("Given the input text is empty, Then the error message should be prompted correctly", () => {
+    render(<ReasonOfSparing onChangeTextarea={() => {}} />);
+    const input = screen.getByRole("textbox") as HTMLInputElement;
+    userEvent.type(input, "");
+    expect(input.validity.valueMissing).toBeTruthy();
+  });
 });

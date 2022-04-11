@@ -1,11 +1,15 @@
+import "./W12MFormContent.css";
+
 interface Props {
   onChangeTextarea: (reason: string) => void;
 }
 
 const ReasonOfSparing = ({ onChangeTextarea }: Props) => {
   return (
-    <div>
-      <label htmlFor="reasonInput">Reason of sparing: </label>
+    <div className="form__div">
+      <label htmlFor="reasonInput" className="form__label">
+        Reason of sparing:{" "}
+      </label>
       <textarea
         id="reasonInput"
         title="Enter the reason of sparing with 17 and 153 characters"
@@ -16,6 +20,8 @@ const ReasonOfSparing = ({ onChangeTextarea }: Props) => {
             "Must be between 17 and 153 characters."
           )
         }
+        rows={8}
+        className="form__input"
       />
     </div>
   );

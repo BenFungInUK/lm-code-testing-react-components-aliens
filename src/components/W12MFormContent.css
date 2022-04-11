@@ -1,0 +1,22 @@
+form {
+  margin: auto;
+}
+
+.form__div {
+  display: flex;
+  text-align: flex-start;
+  margin: 30px;
+  gap: 10px;
+}
+
+.form__label {
+  flex: 0 0 20%;
+}
+
+.form__input {
+  flex: 0 0 80%;
+}
+
+.form__submitButtonContainer {
+  text-align: center;
+}

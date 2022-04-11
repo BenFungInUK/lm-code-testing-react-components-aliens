@@ -16,4 +16,28 @@ describe("validate the function call", () => {
     expect(screen.getByRole("textbox")).toHaveValue("testing number of beings");
     expect(onChangeHandler).toHaveBeenCalled();
   });
+
+  //expect patternMismatch is true/false
+  test.each([
+    ["0", true],
+    ["1", true],
+    ["10", true],
+    ["0000000001", true],
+    ["1000000000", false],
+  ])(
+    "Given the input text is (%s), Then the error message should (not) be prompted correctly",
+    (inputText, expected) => {
+      render(<NumberOfBeings onChangeTextinput={() => {}} />);
+      const input = screen.getByRole("textbox") as HTMLInputElement;
+      userEvent.type(input, inputText);
+      expect(input.validity.patternMismatch).toBe(expected);
+    }
+  );
+
+  test("Given the input text is empty, Then the error message should be prompted correctly", () => {
+    render(<NumberOfBeings onChangeTextinput={() => {}} />);
+    const input = screen.getByRole("textbox") as HTMLInputElement;
+    userEvent.type(input, "");
+    expect(input.validity.valueMissing).toBeTruthy();
+  });
 });

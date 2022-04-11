@@ -1,15 +1,25 @@
+import "./W12MFormContent.css";
+
 interface Props {
   onChangeSelection: (selection: string) => void;
 }
 
 const MathQuestion = ({ onChangeSelection }: Props) => {
   return (
-    <div>
-      <label htmlFor="mathAns">What is 2+2?</label>
+    <div className="form__div">
+      <label htmlFor="mathAns" className="form__label">
+        What is 2+2?
+      </label>
       <select
         id="mathAns"
+        required
+        defaultValue=""
         onChange={(e) => validateAndSelect(e.target as HTMLSelectElement)}
+        className="form__input"
       >
+        <option value="" disabled hidden>
+          Choose here
+        </option>
         <option value="4">4</option>
         <option value="Not 4">Not 4</option>
       </select>
