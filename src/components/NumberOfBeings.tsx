@@ -28,12 +28,13 @@ const NumberOfBeings = ({ onChangeTextinput }: Props) => {
   );
 
   function validateAndSetText(input: HTMLInputElement) {
-    // const regex = /^[1-9][0-9]{9,}$/g;
-    // const found = input.value.match(regex);
-    // if (!found)
-    //   input.setCustomValidity("Numbers ONLY. Must be at least 1,000,000,000.");
-    // else
-    input.setCustomValidity("");
+    if (input.validity.patternMismatch) {
+      input.setCustomValidity("Numbers ONLY. Must be at least 1,000,000,000.");
+    }
+    setTimeout(function () {
+      input.reportValidity();
+      input.setCustomValidity("");
+    }, 1);
     onChangeTextinput(input.value);
   }
 };

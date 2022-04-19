@@ -28,14 +28,15 @@ const PlanetName = ({ onChangeTextinput }: Props) => {
   );
 
   function validateAndSetText(input: HTMLInputElement) {
-    // const regex = /^[A-Za-z0-9]{2,49}$/g;
-    // const found = input.value.match(regex);
-    // if (!found)
-    //   input.setCustomValidity(
-    //     "Must be between 2 and 49 characters. Numbers are allowed, but no special characters."
-    //   );
-    // else
-    input.setCustomValidity("");
+    if (input.validity.patternMismatch) {
+      input.setCustomValidity(
+        "Must be between 2 and 49 characters. Numbers are allowed, but no special characters."
+      );
+    }
+    setTimeout(function () {
+      input.reportValidity();
+      input.setCustomValidity("");
+    }, 1);
     onChangeTextinput(input.value);
   }
 };

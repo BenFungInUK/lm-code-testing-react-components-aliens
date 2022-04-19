@@ -28,7 +28,15 @@ const SpeciesName = ({ onChangeTextinput }: Props) => {
   );
 
   function validateAndSetText(input: HTMLInputElement) {
-    input.setCustomValidity("");
+    if (input.validity.patternMismatch) {
+      input.setCustomValidity(
+        "Must be between 3 and 23 characters. No numbers or special characters allowed!"
+      );
+    }
+    setTimeout(function () {
+      input.reportValidity();
+      input.setCustomValidity("");
+    }, 1);
     onChangeTextinput(input.value);
   }
 };
